@@ -25,7 +25,7 @@ public class BuildingDTO extends AbstractDTO{
     private String deposit;
     private String rentTime;
     private String decorationTime;
-    private double brokerageFee;
+    private Double brokerageFee;
     private String managerName;
     private String managerPhone;
     private List<String> typeCode;
@@ -255,11 +255,11 @@ public class BuildingDTO extends AbstractDTO{
         this.serviceFee = serviceFee;
     }
 
-    public double getBrokerageFee() {
+    public Double getBrokerageFee() {
         return brokerageFee;
     }
 
-    public void setBrokerageFee(double brokerageFee) {
+    public void setBrokerageFee(Double brokerageFee) {
         this.brokerageFee = brokerageFee;
     }
 
