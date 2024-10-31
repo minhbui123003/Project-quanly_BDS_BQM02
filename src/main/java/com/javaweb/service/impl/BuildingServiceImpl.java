@@ -17,6 +17,8 @@ import com.javaweb.repository.BuildingRepository;
 import com.javaweb.repository.RentAreaRepository;
 import com.javaweb.repository.UserRepository;
 import com.javaweb.service.BuildingService;
+import com.javaweb.utils.UploadFileUtils;
+import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -24,6 +26,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.io.File;
 import java.util.*;
 
 @Service
@@ -43,6 +46,8 @@ public class BuildingServiceImpl implements BuildingService {
 
     @Autowired
     private BuildingConverter buildingConverter;
+    @Autowired
+    private UploadFileUtils uploadFileUtils;
 
     @Override
     public ResponseDTO listStaffs(Long buildingId) {
@@ -99,6 +104,25 @@ public class BuildingServiceImpl implements BuildingService {
 
 //        return result;
         return new PageImpl<>(result, pageable, listBuildingEntities.getTotalElements());
+    }
+
+    private void saveThumbnail(BuildingDTO bdto, BuildingEntity buildingEntity)
+    {
+        String path = "/building/" + bdto.getImageName();
+        if (null != bdto.getImageBase64())
+        {
+            if (null != buildingEntity.getAvatar())
+            {
+                if (!path.equals(buildingEntity.getAvatar()))
+                {
+                    File file = new File("D:/JAVA_BACK_END/project3_lan3/src/main/resources/uploads/" + buildingEntity.getAvatar());
+                    file.delete();
+                }
+            }
+            byte[] bytes = Base64.decodeBase64(bdto.getImageBase64().getBytes());
+            uploadFileUtils.writeOrUpdate(path, bytes);
+            buildingEntity.setAvatar(path);
+        }
     }
 
     @Override
@@ -181,7 +205,7 @@ public class BuildingServiceImpl implements BuildingService {
     public void updateAssignmentBuilding(AssignmentBuildingDTO assignmentBuildingDTO) {
 
         BuildingEntity building = buildingRepository.findById(assignmentBuildingDTO.getBuildingId()).get();
-//        building.getUserEntities().clear();
+        building.getUserEntities().clear();
         for(Long it : assignmentBuildingDTO.getStaffs())
         {
             UserEntity staff = userRepository.findById(it).get();

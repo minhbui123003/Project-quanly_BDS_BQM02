@@ -19,23 +19,26 @@ public class BuildingAPI {
     private BuildingService buildingService;
 
     @PostMapping
-    public BuildingDTO addOrUpdateBuilding(@RequestBody BuildingDTO buildingDTO) {
+    public ResponseEntity<BuildingDTO> addOrUpdateBuilding(@RequestBody BuildingDTO buildingDTO) {
 
         BuildingDTO result = buildingService.createBuilding(buildingDTO);
-        return result;
+        return ResponseEntity.ok(result);
     }
 
+    //xóa nhân viên
     @DeleteMapping("/{ids}")
     public void deleteBuilding(@PathVariable List<Long> ids ) {
         buildingService.deleteBuilding(ids);
     }
 
+//
     @GetMapping("/{id}/staffs")
     public ResponseDTO assignmentBuilding(@PathVariable Long id){
         ResponseDTO result = buildingService.listStaffs(id);
         return result;
     }
 
+//    giao tòa nhà
     @PostMapping("/assignment")
     public void updateAssignmentBuilding (@RequestBody AssignmentBuildingDTO assignmentBuildingDTO) {
 //        gọi hàm update

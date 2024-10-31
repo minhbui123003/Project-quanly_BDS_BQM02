@@ -32,7 +32,7 @@ public class BuildingController {
 
 //    thêm @ @PageableDefault(size = ...) Pageable pageableể quản lý phân trang
     @RequestMapping(value = "/admin/building-list",method = RequestMethod.GET)
-    public ModelAndView buildingList(@ModelAttribute BuildingSearchRequest buildingSearchRequest, @PageableDefault(size = 1) Pageable pageable  , @RequestParam Map<String, Object> params, @RequestParam  (name="typeCode", required=false) List<String> typeCode , HttpServletRequest request){
+    public ModelAndView buildingList(@ModelAttribute BuildingSearchRequest buildingSearchRequest, @PageableDefault(size = 4) Pageable pageable  , @RequestParam Map<String, Object> params, @RequestParam  (name="typeCode", required=false) List<String> typeCode , HttpServletRequest request){
         ModelAndView mav = new ModelAndView("admin/building/list");
 //        xuống DB laays data
         mav.addObject("modelSearch",buildingSearchRequest);
