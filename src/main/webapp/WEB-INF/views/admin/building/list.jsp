@@ -340,26 +340,41 @@
             </table>
 
 <%--            thêm phần phân trang--%>
-           <div class="pagination font-18 " >
-              <c:if test="${currentPage > 0}">
-                  <a href="?page=${currentPage - 1}" class="previous">Previous</a>
-              </c:if>
+           <!-- Thêm phần phân trang -->
+            <div class="pagination font-18">
+                <c:if test="${totalPages > 0}">
+                    <c:if test="${currentPage > 0}">
+                        <a href="?page=${currentPage - 1}" class="previous">Previous</a>
+                    </c:if>
 
-              <c:forEach begin="0" end="${totalPages - 1}" var="i">
-                  <c:choose>
-                      <c:when test="${i == currentPage}">
-                          <span class="current">${i + 1}</span> <!-- Trang hiện tại -->
-                      </c:when>
-                      <c:otherwise>
-                          <a href="?page=${i}">${i + 1}</a> <!-- Các trang khác -->
-                      </c:otherwise>
-                  </c:choose>
-              </c:forEach>
+                    <c:forEach begin="0" end="${totalPages - 1}" var="i">
+                        <c:choose>
+                            <c:when test="${i == currentPage}">
+                                <span class="current">${i + 1}</span> <!-- Trang hiện tại -->
+                            </c:when>
+                            <c:otherwise>
+                                <a href="?page=${i}">${i + 1}</a> <!-- Các trang khác -->
+                            </c:otherwise>
+                        </c:choose>
+                    </c:forEach>
 
-              <c:if test="${currentPage < totalPages - 1}">
-                  <a href="?page=${currentPage + 1}" class="next">Next</a>
-              </c:if>
-          </div>
+                    <c:if test="${currentPage < totalPages - 1}">
+                        <a href="?page=${currentPage + 1}" class="next">Next</a>
+                    </c:if>
+                </c:if>
+                <c:if test="${totalPages == 0}">
+                 <script>
+                      swal({
+                          title: "Không Có Kết Quả",
+                          icon: "warning",
+                          text: "Không có kết quả nào được tìm thấy.",
+                          confirmButtonText: "OK",
+                          confirmButtonClass: "btn btn-warning"
+                      });
+                  </script>
+                    <p>Không có kết quả nào được tìm thấy.</p>
+                </c:if>
+            </div>
 
 
           </div>
