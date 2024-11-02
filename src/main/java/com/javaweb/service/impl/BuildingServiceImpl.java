@@ -27,6 +27,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.File;
+
+import java.io.IOException;
 import java.util.*;
 
 @Service
@@ -108,20 +110,37 @@ public class BuildingServiceImpl implements BuildingService {
 
     private void saveThumbnail(BuildingDTO bdto, BuildingEntity buildingEntity)
     {
-        String path = "/building/" + bdto.getImageName();
-        if (null != bdto.getImageBase64())
+        String path =  "/building/"+ bdto.getImageName();
+        if (null !=  bdto.getImageBase64())
         {
             if (null != buildingEntity.getAvatar())
             {
                 if (!path.equals(buildingEntity.getAvatar()))
                 {
-                    File file = new File("D:/JAVA_BACK_END/project3_lan3/src/main/resources/uploads/" + buildingEntity.getAvatar());
+                    File file = new File("D:\\JAVA_BACK_END\\project3_lan3\\upload" + buildingEntity.getAvatar());
                     file.delete();
                 }
             }
-            byte[] bytes = Base64.decodeBase64(bdto.getImageBase64().getBytes());
-            uploadFileUtils.writeOrUpdate(path, bytes);
-            buildingEntity.setAvatar(path);
+            if ( !bdto.getImageBase64().isEmpty()) {
+                try {
+                    // Giải mã Base64
+                    byte[] bytes = Base64.decodeBase64(bdto.getImageBase64().split(",")[1]);
+
+                    // Kiểm tra kích thước dữ liệu sau khi giải mã
+                    System.out.println("Kích thước dữ liệu sau khi giải mã Base64: " + bytes.length);
+
+                    // Tiếp tục với việc ghi file...
+                    uploadFileUtils.writeOrUpdate(path, bytes);
+                    buildingEntity.setAvatar(path);
+                }
+                catch (IllegalArgumentException e) {
+                    System.out.println("Lỗi khi giải mã Base64: Dữ liệu không hợp lệ. " + e.getMessage());
+                }
+               }
+                else {
+                System.out.println("Dữ liệu Base64 không hợp lệ.");
+            }
+
         }
     }
 
@@ -147,12 +166,14 @@ public class BuildingServiceImpl implements BuildingService {
                rnew.setBuilding(building);
                rentAreaRepository.save(rnew) ;
            }
+           saveThumbnail(dto, building);
 
 
        }
 //       thêm
        else {
            BuildingEntity building = buildingConverter.toBuildingEntity(dto);
+           saveThumbnail(dto, building);
            buildingRepository.save(building) ;
            List<String> list = Arrays.asList(dto.getRentArea().split(","));
            for (String it: list) {
@@ -161,7 +182,6 @@ public class BuildingServiceImpl implements BuildingService {
                rnew.setBuilding(building);
                rentAreaRepository.save(rnew) ;
            }
-
        }
        return dto;
     }

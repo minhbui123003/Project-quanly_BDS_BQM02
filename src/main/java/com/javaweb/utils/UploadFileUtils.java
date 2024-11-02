@@ -11,7 +11,7 @@ import java.io.IOException;
 public class UploadFileUtils {
 
     public void writeOrUpdate(String path, byte[] bytes) {
-        path = "D:/JAVA_BACK_END/project3_lan3/src/main/resources/uploads/" + path;
+        path = "D:\\JAVA_BACK_END\\project3_lan3\\upload" + path;
         File file = new File(StringUtils.substringBeforeLast(path, "/"));
         if (!file.exists()) {
             file.mkdir();

@@ -24,7 +24,7 @@ public class ReadFileUtils extends HttpServlet {
         }
         ServletOutputStream outStream;
         outStream = response.getOutputStream();
-        FileInputStream fin = new FileInputStream("D:/JAVA_BACK_END/project3_lan3/src/main/resources/uploads/" + relativeImagePath);
+        FileInputStream fin = new FileInputStream("D:\\JAVA_BACK_END\\project3_lan3\\upload" + relativeImagePath);
         BufferedInputStream bin = new BufferedInputStream(fin);
         BufferedOutputStream bout = new BufferedOutputStream(outStream);
         int ch =0;

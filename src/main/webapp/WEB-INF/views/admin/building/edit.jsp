@@ -391,8 +391,6 @@
                     <label class="col-xs-3 title_text">Hình Đại Diện</label>
                     <input class="col-xs-3 no-padding-right" type="file" id="uploadImage"/>
                     <div class="col-xs-9">
-
-<%--                                <form:input  path="image" class="form-control" id="imageInput" />--%>
                             <c:if test="${not empty buildingEdit.image}">
                                 <c:set var="imagePath" value="/repository${modelEdit.image}"/>
                                 <img src="${imagePath}" id="viewImage" width="300px" height="300px" style="margin-top: 50px">
@@ -430,6 +428,15 @@
       </div>
     </div><!-- /.main-content -->
 
+<style>
+.thumbnail-image {
+    width: 100%; /* Điều chỉnh theo chiều rộng của container */
+    height: auto; /* Giữ tỷ lệ hình ảnh */
+    max-height: 300px; /* Chiều cao tối đa để giữ cho hình ảnh không quá lớn */
+    object-fit: cover; /* Căn chỉnh hình ảnh để không bị vỡ */
+    margin-top: 50px; /* Khoảng cách trên cùng */
+}
+</style>
 <script>
 
     var imageBase64 = '';
