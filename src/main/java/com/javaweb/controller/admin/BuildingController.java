@@ -32,13 +32,14 @@ public class BuildingController {
 
 //    thêm @ @PageableDefault(size = ...) Pageable pageableể quản lý phân trang
     @RequestMapping(value = "/admin/building-list",method = RequestMethod.GET)
-    public ModelAndView buildingList(@ModelAttribute BuildingSearchRequest buildingSearchRequest, @PageableDefault(size = 4) Pageable pageable  , @RequestParam Map<String, Object> params, @RequestParam  (name="typeCode", required=false) List<String> typeCode , HttpServletRequest request){
+    public ModelAndView buildingList(@ModelAttribute BuildingSearchRequest buildingSearchRequest, @PageableDefault(size = 3) Pageable pageable  , @RequestParam Map<String, Object> params, @RequestParam  (name="typeCode", required=false) List<String> typeCode , HttpServletRequest request){
         ModelAndView mav = new ModelAndView("admin/building/list");
-//        xuống DB laays data
+        //   xuống DB laays data
         mav.addObject("modelSearch",buildingSearchRequest);
 
+        mav.addObject("paramMap", params);
         Page<BuildingSearchResponse> responseList = buildingService.findAllBuildings(params, typeCode,pageable);
-//        lấy danh sách nội dung hiển thị
+        // lấy danh sách nội dung hiển thị
         mav.addObject("buildingList", responseList.getContent());
         // Tổng số trang
         mav.addObject("totalPages", responseList.getTotalPages());
@@ -46,7 +47,7 @@ public class BuildingController {
         mav.addObject("currentPage", responseList.getNumber());
 
 
-//        các ds nhân viên , tỉnh- thành phố, nhà
+        //  các ds nhân viên , tỉnh- thành phố, nhà
         mav.addObject("listStaffs",userService.getStaffs());
         mav.addObject("listDistricts", District.type());
         mav.addObject("listTypeCode", TypeCode.listTypeCode());
