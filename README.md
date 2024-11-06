@@ -1,4 +1,5 @@
-chạy database bằng mysql , chạy code trong IDE : intelij
+clone project Branch Cascade    
+chạy database bằng mysql , chạy code trong IDE : intelij        
 cài đặt apache tomcat
 run dự án bằng tomcat
 ![image](https://github.com/user-attachments/assets/df349dab-1fa7-4dcc-999b-317fd8e56789)
