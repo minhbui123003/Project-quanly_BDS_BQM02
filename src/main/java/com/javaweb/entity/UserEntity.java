@@ -44,6 +44,9 @@ public class UserEntity extends BaseEntity {
 //    @OneToMany(mappedBy="users", fetch = FetchType.LAZY)
 //    private List<UserRoleEntity> userRoleEntities = new ArrayList<>();
 
+    @ManyToMany(mappedBy = "userWithCustomer", fetch = FetchType.LAZY)
+    private List<CustomerEntity> customerEntities = new ArrayList<>();
+
 
 
     public static long getSerialVersionUID() {
@@ -106,5 +109,21 @@ public class UserEntity extends BaseEntity {
     @Override
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public List<BuildingEntity> getBuildingEntityList() {
+        return buildingEntityList;
+    }
+
+    public void setBuildingEntityList(List<BuildingEntity> buildingEntityList) {
+        this.buildingEntityList = buildingEntityList;
+    }
+
+    public List<CustomerEntity> getCustomerEntities() {
+        return customerEntities;
+    }
+
+    public void setCustomerEntities(List<CustomerEntity> customerEntities) {
+        this.customerEntities = customerEntities;
     }
 }
