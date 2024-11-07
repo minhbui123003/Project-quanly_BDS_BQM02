@@ -1,0 +1,71 @@
+[33mcommit da544ed5fad4cd74749f2fee2c16decb20bee3c5[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mcascade[m[33m)[m
+Author: minhbui <minhquangbui123321@gmail.com>
+Date:   Mon Nov 4 14:49:51 2024 +0700
+
+    fix lỗi tìm kiếm của handmade và bắt đầu làm project 4
+
+[33mcommit f85988f1e2f2410256bb8ee14ba3ba5133d794e7[m
+Author: minhbui <minhquangbui123321@gmail.com>
+Date:   Sat Nov 2 14:45:43 2024 +0700
+
+    upload file thanh cong nhưng chưa hiển thị ảnh lên building khi sửa
+
+[33mcommit 517555263c1611911e87ddd398486f9d6a85dd55[m
+Author: minhbui <minhquangbui123321@gmail.com>
+Date:   Fri Nov 1 10:31:44 2024 +0700
+
+    fix loi thong bao tim kiem toa nha
+
+[33mcommit 94a9631e81c7b657f38f4360c05448a859975b5d[m
+Author: minhbui <minhquangbui123321@gmail.com>
+Date:   Thu Oct 31 09:17:08 2024 +0700
+
+    fix loi upload ten anh
+
+[33mcommit 33001c8ef1c264affb066625a1ce91fef4859c9f[m
+Author: minhbui <minhquangbui123321@gmail.com>
+Date:   Mon Oct 28 14:12:53 2024 +0700
+
+    fix xong loi
+
+[33mcommit 747f909614b705db9db1399ff8f8e6e9e970a6f7[m
+Author: minhbui <minhquangbui123321@gmail.com>
+Date:   Tue Oct 15 14:16:38 2024 +0700
+
+    update cascade phần sửa tòa nhà , xóa tòa nhà
+
+[33mcommit d1c9a0e144c1fa2543b10bbcc898c9a1877a2656[m
+Author: minhbui <minhquangbui123321@gmail.com>
+Date:   Mon Oct 14 00:00:38 2024 +0700
+
+    đã thêm phần phân trang sản phẩm
+
+[33mcommit ae047c5b880c2417f63d652b53154e11dd8d2a80[m
+Author: minhbui <minhquangbui123321@gmail.com>
+Date:   Sat Oct 12 17:04:54 2024 +0700
+
+    update xong phầ nassignmentBuilding
+
+[33mcommit d14c28e0ac35e32acf0ba1dedef23b7c6e642042[m
+Author: minhbui <minhquangbui123321@gmail.com>
+Date:   Thu Oct 10 23:11:43 2024 +0700
+
+    ädd thêm chức năng sửa tòa nhà và hiện BD lên phần sửa
+
+[33mcommit 03f2af96fd01bf6b06259e840518cb6950b123be[m
+Author: minhbui <minhquangbui123321@gmail.com>
+Date:   Thu Oct 10 15:40:01 2024 +0700
+
+    xong phần xóa tòa nhà và thêm tòa nhà , còn sửa tòa nhà và giao tòa nhà
+
+[33mcommit 7d2773e730fe3f011cbf5495dd4e34c639879c6a[m
+Author: minhbui <minhquangbui123321@gmail.com>
+Date:   Tue Oct 8 17:01:15 2024 +0700
+
+    xong phan chức năng tìm kiếm tòa nhà
+
+[33mcommit a79d1021aeb0ae2b862a9ef33f00bac2f4e55880[m[33m ([m[1;31morigin/main[m[33m, [m[1;32mmain[m[33m)[m
+Author: minhbui <minhquangbui123321@gmail.com>
+Date:   Tue Oct 8 09:22:31 2024 +0700
+
+    start do CRUD with building

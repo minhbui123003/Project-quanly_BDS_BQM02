@@ -343,25 +343,28 @@
            <!-- Thêm phần phân trang -->
             <div class="pagination font-18">
                 <c:if test="${totalPages > 0}">
-                  <c:if test="${currentPage > 0}">
-                      <a href="?page=${currentPage - 1}&<c:forEach var='entry' items='${paramMap}'>${entry.key}=${entry.value}&</c:forEach>" class="previous">Previous</a>
-                  </c:if>
+                    <ul class="pagination">
+                        <c:if test="${currentPage > 0}">
+                            <li><a href="?page=${currentPage - 1}&<c:forEach var='entry' items='${paramMap}'>${entry.key}=${entry.value}&</c:forEach>" class="previous">«</a></li>
+                        </c:if>
 
-                  <c:forEach begin="0" end="${totalPages - 1}" var="i">
-                      <c:choose>
-                          <c:when test="${i == currentPage}">
-                              <span class="current">${i + 1}</span>
-                          </c:when>
-                          <c:otherwise>
-                              <a href="?page=${i}&<c:forEach var='entry' items='${paramMap}'>${entry.key}=${entry.value}&</c:forEach>">${i + 1}</a>
-                          </c:otherwise>
-                      </c:choose>
-                  </c:forEach>
+                        <c:forEach begin="0" end="${totalPages - 1}" var="i">
+                            <c:choose>
+                                <c:when test="${i == currentPage}">
+                                    <li><span class="current">${i + 1}</span></li>
+                                </c:when>
+                                <c:otherwise>
+                                    <li><a href="?page=${i}&<c:forEach var='entry' items='${paramMap}'>${entry.key}=${entry.value}&</c:forEach>">${i + 1}</a></li>
+                                </c:otherwise>
+                            </c:choose>
+                        </c:forEach>
 
-                  <c:if test="${currentPage < totalPages - 1}">
-                      <a href="?page=${currentPage + 1}&<c:forEach var='entry' items='${paramMap}'>${entry.key}=${entry.value}&</c:forEach>" class="next">Next</a>
-                  </c:if>
-              </c:if>
+                        <c:if test="${currentPage < totalPages - 1}">
+                            <li><a href="?page=${currentPage + 1}&<c:forEach var='entry' items='${paramMap}'>${entry.key}=${entry.value}&</c:forEach>" class="next">»</a></li>
+                        </c:if>
+                    </ul>
+                </c:if>
+
 
                 <c:if test="${totalPages == 0}">
                  <script>
@@ -400,6 +403,38 @@
     overflow-y: auto;  /* Thêm thanh cuộn theo chiều dọc */
     overflow-x: hidden; /* Ẩn thanh cuộn theo chiều ngang (tuỳ chọn) */
 }
+
+.pagination {
+    display: inline-flex;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.pagination a, .pagination span {
+    padding: 8px 12px;
+    margin: 2px;
+    text-decoration: none;
+    color: #007bff;
+    border: 1px solid #ddd;
+    display: inline-block;
+}
+
+.pagination a:hover {
+    background-color: #f0f0f0;
+}
+
+.pagination .current {
+    background-color: #007bff;
+    color: white;
+    border: 1px solid #007bff;
+    cursor: default;
+}
+
+.pagination a.previous, .pagination a.next {
+    font-weight: bold;
+}
+
 </style>
 
 
