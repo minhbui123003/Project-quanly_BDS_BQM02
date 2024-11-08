@@ -159,11 +159,13 @@
                             <form:input type="text" class="form-control"  path="managerPhone"/>
                           </div>
                           <div class="col-xs-2">
-                            <label for="">Nhân viên phụ trách</label>
-                            <form:select  path="staffId" class="form-control">
-                              <option value=""> Tên Nhân viên </option>
-                              <form:options items="${listStaffs}"/>
-                            </form:select>
+                            <security:authorize access="hasRole('MANAGER')">
+                              <label for="">Nhân viên phụ trách</label>
+                              <form:select  path="staffId" class="form-control">
+                                <option value=""> Tên Nhân viên </option>
+                                <form:options items="${listStaffs}"/>
+                              </form:select>
+                            </security:authorize>
                           </div>
                         </div>
                       </div>

@@ -302,7 +302,7 @@
         <input type="hidden" id="customerId">
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary" id="btnAssingmentCustomer">Giao Khách Hàng</button>
+        <button type="button" class="btn btn-primary" id="btnAssingmentCustomer" data-dismiss="modal">Giao Khách Hàng</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
       </div>
     </div>
@@ -333,6 +333,7 @@
     }).then(function (res) {
       if(res.value){
         deleteCustomers(Id) ;
+        window.location.href = "${customerListUrl}";
       }else if(res.dismiss == 'cancel'){
         console.log('cancel');
       }
@@ -361,6 +362,7 @@
       }).then(function (res) {
         if(res.value){
           deleteCustomers(customerids);
+          window.location.href = "${customerListUrl}";
         }else if(res.dismiss == 'cancel'){
           console.log('cancel');
         }
@@ -383,7 +385,7 @@
             text: "Khách hàng đã được xóa.",
             icon: "success"
           }).then(() => {
-            window.location.href = "/admin/customer-list"; // Chuyển hướng
+
           });
         }
       },
@@ -463,7 +465,7 @@
 
       },
       error :function(respond){
-        console.info("Giao ko thành cồng ")
+        console.info("Giao ko thành công ")
         console.log(respond) ;
       },
     })

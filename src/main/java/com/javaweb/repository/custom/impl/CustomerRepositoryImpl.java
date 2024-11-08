@@ -72,7 +72,7 @@ public class CustomerRepositoryImpl implements CustomerRepositoryCustom {
         querySpecial(params, where);
         where.append(" group by customer.id ");
         sql.append(where);
-        sql.append(" limit  ").append(pageable.getPageSize()).append(" \n ").append(" offset ").append(pageable.getPageNumber());
+        sql.append(" limit  ").append(pageable.getPageSize()).append(" \n ").append(" offset ").append(pageable.getOffset());
         System.out.println("Final query: " + sql.toString());
         Query query = entityManager.createNativeQuery(sql.toString(),CustomerEntity.class);
         return query.getResultList();

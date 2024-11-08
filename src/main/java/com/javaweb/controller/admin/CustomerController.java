@@ -1,7 +1,11 @@
 package com.javaweb.controller.admin;
 
 
+import com.javaweb.converter.CustomerConverter;
+import com.javaweb.entity.CustomerEntity;
+import com.javaweb.enums.TransactionType;
 import com.javaweb.model.dto.CustomerDTO;
+import com.javaweb.repository.CustomerRepository;
 import com.javaweb.service.ICustomerService;
 import com.javaweb.service.IUserService;
 import com.javaweb.utils.DisplayTagUtils;
@@ -9,11 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 
@@ -29,6 +30,10 @@ public class CustomerController {
     private IUserService userService;
     @Autowired
     private ICustomerService customerService;
+    @Autowired
+    private CustomerRepository customerRepository;
+    @Autowired
+    private CustomerConverter customerConverter;
 
     @RequestMapping(value = "/admin/customer-list",method = RequestMethod.GET)
     public ModelAndView customerList(@ModelAttribute CustomerDTO customerDTO, @RequestParam Map<String ,Object> params, HttpServletRequest request){
@@ -49,11 +54,27 @@ public class CustomerController {
         return mav;
     }
 
+//add customer
     @RequestMapping(value = "/admin/customer-edit", method = RequestMethod.GET)
-    public ModelAndView customerIdEdit(@ModelAttribute CustomerDTO dto , HttpServletRequest request){
+    public ModelAndView customerEdit(@ModelAttribute CustomerDTO customerDTO , HttpServletRequest request){
         // đẩy ra view theo đường dẫn file
         ModelAndView mav = new ModelAndView("admin/customer/edit") ;
-        mav.addObject("modalAdd" , dto) ;
+        mav.addObject("modalAdd" , customerDTO) ;
+        return mav ;
+    }
+
+//    edit customer
+    @RequestMapping(value = "/admin/customer-edit-{id}", method = RequestMethod.GET)
+    public ModelAndView customerEditId(@PathVariable("id") Long id, HttpServletRequest request){
+        // đẩy customer ra   view theo đường dẫn file
+        ModelAndView mav = new ModelAndView("admin/customer/edit") ;
+
+        CustomerEntity customerEntity = customerRepository.findById(id).get();
+        CustomerDTO customerDTO  = customerConverter.convertToDto(customerEntity);
+
+        mav.addObject("TransactionType", TransactionType.transactionType());
+
+        mav.addObject("modalAdd" ,customerDTO ) ;
         return mav ;
     }
 
