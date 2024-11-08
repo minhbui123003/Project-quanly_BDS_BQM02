@@ -19,7 +19,8 @@ import java.util.List;
 import java.util.Map;
 
 @Controller(value = "usersControllerOfAdmin")
-public class UserController {
+public class
+UserController {
 
 	@Autowired
 	private IUserService userService;

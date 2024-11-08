@@ -170,53 +170,104 @@
 
 
       <!-- Bảng danh sách -->
-<%--      <div class="row" style="margin-top: 70px;">--%>
-<%--        <div class="col-xs-12" >--%>
-<%--          <display:table name="model.listResult" cellspacing="0" cellpadding="0"--%>
-<%--                         requestURI="${customerListUrl}" partialList="true" sort="external"--%>
-<%--                         size="${model.totalItems}" defaultsort="2" defaultorder="ascending"--%>
-<%--                         id="tableList" pagesize="${model.maxPageItems}"--%>
-<%--                         export="false"--%>
-<%--                         class="table table-fcv-ace table-striped table-bordered table-hover dataTable no-footer"--%>
-<%--                         style="margin: 3em 0 1.5em;">--%>
-<%--            <display:column title="<fieldset class='form-group'>--%>
-<%--                         <input type='checkbox' id='checkAll' class='check-box-element'>--%>
-<%--                          </fieldset>" class="center select-cell"--%>
-<%--                            headerClass="center select-cell">--%>
-<%--              <fieldset>--%>
-<%--                <input type="checkbox" name="checkList" value="${tableList.id}"--%>
-<%--                       id="checkbox_${tableList.id}" class="check-box-element"/>--%>
-<%--              </fieldset>--%>
-<%--            </display:column>--%>
-<%--            <display:column headerClass="text-left" property="fullname" title="Tên Khách Hàng"/>--%>
-<%--            <display:column headerClass="text-left" property="phone" title="Số điện thoại"/>--%>
-<%--            <display:column headerClass="text-left" property="email" title="Email"/>--%>
-<%--            <display:column headerClass="text-left" property="demand" title="Nhu Cầu"/>--%>
-<%--            <display:column headerClass="text-left" property="createdBy" title="Người tạo"/>--%>
-<%--            <display:column headerClass="text-left" property="createdDate" title="Ngày tạo"/>--%>
-<%--            <display:column headerClass="text-left" property="status" title="Tình trạng"/>--%>
-<%--            <display:column headerClass="col-actions" title="Thao tác">--%>
-<%--              <div class="hidden-xs hidden-xs btn-group" >--%>
-<%--                <!-- Nút giao tòa nhà -->--%>
-<%--                <security:authorize access="hasRole('MANAGER')">--%>
-<%--                  <button class="btn btn-xs btn-success" title="Giao khách hàng" onclick="assingmentCustomer(${tableList.id})">--%>
-<%--                    <i class="fa-solid fa-person-circle-check bigger-120"></i>--%>
-<%--                  </button>--%>
-<%--                </security:authorize>--%>
-<%--                <a href="/admin/customer-edit-${tableList.id}" class="btn btn-xs btn-info">--%>
-<%--                  <i class="ace-icon fa fa-pencil bigger-120"></i>--%>
-<%--                </a>--%>
-<%--                <security:authorize access="hasRole('MANAGER')">--%>
-<%--                  <button class="btn btn-xs btn-danger" title="Xóa khách hàng" onclick="deleteCustomer(${tableList.id})">--%>
-<%--                    <i class="ace-icon fa fa-trash-o bigger-120"></i>--%>
-<%--                  </button>--%>
-<%--                </security:authorize>--%>
-<%--              </div>--%>
-<%--            </display:column>--%>
-<%--          </display:table>--%>
+      <div class="row" style="margin-top: 70px;">
+        <div class="col-xs-12" >
+          <display:table name="model.listResult" cellspacing="0" cellpadding="0"
+                         requestURI="${customerListUrl}" partialList="true" sort="external"
+                         size="${model.totalItems}" defaultsort="2" defaultorder="ascending"
+                         id="tableList" pagesize="${model.maxPageItems}"
+                         export="false"
+                         class="table table-fcv-ace table-striped table-bordered table-hover dataTable no-footer"
+                         style="margin: 3em 0 1.5em;">
+            <display:column title="<fieldset class='form-group'>
+                         <input type='checkbox' id='checkAll' class='check-box-element'>
+                          </fieldset>" class="center select-cell"
+                            headerClass="center select-cell">
+              <fieldset>
+                <input type="checkbox" name="checkList" value="${tableList.id}"
+                       id="checkbox_${tableList.id}" class="check-box-element"/>
+              </fieldset>
+            </display:column>
+            <display:column headerClass="text-left" property="fullname" title="Tên Khách Hàng"/>
+            <display:column headerClass="text-left" property="phone" title="Số điện thoại"/>
+            <display:column headerClass="text-left" property="email" title="Email"/>
+            <display:column headerClass="text-left" property="demand" title="Nhu Cầu"/>
+            <display:column headerClass="text-left" property="createdBy" title="Người tạo"/>
+            <display:column headerClass="text-left" property="createdDate" title="Ngày tạo"/>
+            <display:column headerClass="text-left" property="status" title="Tình trạng"/>
+            <display:column headerClass="col-actions" title="Thao tác">
+              <div class="hidden-xs hidden-xs btn-group" >
+                <!-- Nút giao tòa nhà -->
+                <security:authorize access="hasRole('MANAGER')">
+                  <button class="btn btn-xs btn-success" title="Giao khách hàng" onclick="assingmentCustomer(${tableList.id})">
+                    <i class="ace-icon glyphicon glyphicon-list bigger-120"></i>
+                  </button>
+                </security:authorize>
+                <a href="/admin/customer-edit-${tableList.id}" class="btn btn-xs btn-info">
+                  <i class="ace-icon fa fa-pencil bigger-120"></i>
+                </a>
+                <security:authorize access="hasRole('MANAGER')">
+                  <button class="btn btn-xs btn-danger" title="Xóa khách hàng" onclick="deleteCustomer(${tableList.id})">
+                    <i class="ace-icon fa fa-trash-o bigger-120"></i>
+                  </button>
+                </security:authorize>
+              </div>
+            </display:column>
+          </display:table>
 
-<%--        </div><!-- /.span -->--%>
-<%--      </div>--%>
+        </div><!-- /.span -->
+      </div>
+
+      <style>
+/* Định dạng chung cho nhóm nút */
+.btn-group .btn {
+  border-radius: 5px; /* Bo góc cho nút */
+  border: 1px solid transparent; /* Viền mặc định */
+  padding: 5px 10px; /* Khoảng cách trong nút */
+  transition: all 0.3s ease; /* Hiệu ứng chuyển đổi */
+}
+
+/* Hiệu ứng khi hover vào nút */
+.btn-group .btn:hover {
+  transform: translateY(-5px); /* Đẩy nút lên trên 5px */
+  border-color: #999; /* Màu viền khi hover */
+  background-color: #f0f0f0; /* Thay đổi màu nền khi hover */
+  color: #333; /* Màu chữ khi hover */
+}
+
+/* Định dạng màu nền cho từng nút */
+.btn-group .btn-success {
+  background-color: #28a745;
+  color: white;
+}
+
+.btn-group .btn-info {
+  background-color: #17a2b8;
+  color: white;
+}
+
+.btn-group .btn-danger {
+  background-color: #dc3545;
+  color: white;
+}
+
+/* Thay đổi màu nền và viền khi hover vào từng loại nút */
+.btn-group .btn-success:hover {
+  background-color: #218838;
+  border-color: #1c7430;
+}
+
+.btn-group .btn-info:hover {
+  background-color: #138496;
+  border-color: #117a8b;
+}
+
+.btn-group .btn-danger:hover {
+  background-color: #c82333;
+  border-color: #bd2130;
+}
+
+      </style>
 
 
       <!-- end Bảng danh sách -->
